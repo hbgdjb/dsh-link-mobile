@@ -1,0 +1,99 @@
+/* mobile/src/ui/tokens.css — 复刻电脑端 Theme token（cordis_inspect_query Theme.listTokens）
+ * 规则：组件样式只允许 var(--dsw-alias-*) 与本文派生 token；禁止字面色值（代码高亮/插图除外）。
+ * 亮/暗两套：requiresLightAndDark 的 token 必须同时提供。 */
+
+:root {
+  color-scheme: light;
+
+  /* ---- 电脑端 alias token（light） ---- */
+  --dsw-alias-bg-base: #f6f7f9;
+  --dsw-alias-bg-layer-1: #ffffff;
+  --dsw-alias-bg-layer-2: #eef0f3;
+  --dsw-alias-bg-overlay: #ffffff;
+  --dsw-alias-border-l1: #e6e8ec;
+  --dsw-alias-border-l2: #d4d7dd;
+  --dsw-alias-brand-primary: #4f7cff;
+  --dsw-alias-label-primary: #17181c;
+  --dsw-alias-label-secondary: #6b7078;
+  --dsw-alias-state-success-primary: #22a06b;
+  --dsw-alias-state-warn-primary: #c98a1b;
+  --dsw-alias-state-error-primary: #d4483f;
+  --dsw-alias-state-idle-primary: #9aa0a8;
+  --dsw-specific-sidebar-fill: #ffffff;
+
+  /* ---- 派生 token（间距/字号/圆角/阴影/动效，对齐电脑端节奏） ---- */
+  --dsh-radius-s: 6px;
+  --dsh-radius-m: 10px;
+  --dsh-radius-l: 16px;
+  --dsh-radius-pill: 999px;
+  --dsh-space-1: 4px;
+  --dsh-space-2: 8px;
+  --dsh-space-3: 12px;
+  --dsh-space-4: 16px;
+  --dsh-space-5: 24px;
+  --dsh-space-6: 32px;
+  --dsh-font-sans: -apple-system, 'SF Pro Text', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --dsh-font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+  --dsh-text-xs: 12px;
+  --dsh-text-s: 13px;
+  --dsh-text-m: 15px;
+  --dsh-text-l: 17px;
+  --dsh-text-xl: 22px;
+  --dsh-shadow-s: 0 1px 2px rgb(0 0 0 / 0.06);
+  --dsh-shadow-m: 0 4px 16px rgb(0 0 0 / 0.1);
+  --dsh-shadow-sheet: 0 -8px 32px rgb(0 0 0 / 0.14);
+  --dsh-motion-fast: 120ms;
+  --dsh-motion: 200ms;
+  --dsh-motion-slow: 320ms;
+  --dsh-ease: cubic-bezier(0.2, 0, 0, 1);
+  --dsh-tap: 44px;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --dsw-alias-bg-base: #101014;
+  --dsw-alias-bg-layer-1: #17181d;
+  --dsw-alias-bg-layer-2: #1f2127;
+  --dsw-alias-bg-overlay: #1c1e24;
+  --dsw-alias-border-l1: #26282f;
+  --dsw-alias-border-l2: #34373f;
+  --dsw-alias-brand-primary: #6b93ff;
+  --dsw-alias-label-primary: #eceef2;
+  --dsw-alias-label-secondary: #9ba1ab;
+  --dsw-alias-state-success-primary: #35b982;
+  --dsw-alias-state-warn-primary: #e0a33c;
+  --dsw-alias-state-error-primary: #f0645b;
+  --dsw-alias-state-idle-primary: #6a707a;
+  --dsw-specific-sidebar-fill: #17181d;
+
+  --dsh-shadow-s: 0 1px 2px rgb(0 0 0 / 0.4);
+  --dsh-shadow-m: 0 4px 16px rgb(0 0 0 / 0.45);
+  --dsh-shadow-sheet: 0 -8px 32px rgb(0 0 0 / 0.55);
+}
+
+/* ---- 全局基线 ---- */
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--dsw-alias-bg-base);
+  color: var(--dsw-alias-label-primary);
+  font-family: var(--dsh-font-sans);
+  font-size: var(--dsh-text-m);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+/* 代码高亮：从 alias token 派生的克制色板（≤6 色），不引入第三方亮色主题 */
+.hljs-keyword, .hljs-selector-tag { color: var(--dsw-alias-brand-primary); }
+.hljs-string, .hljs-attr { color: var(--dsw-alias-state-success-primary); }
+.hljs-comment { color: var(--dsw-alias-state-idle-primary); font-style: italic; }
+.hljs-number, .hljs-literal { color: var(--dsw-alias-state-warn-primary); }
+.hljs-title, .hljs-function { color: var(--dsw-alias-label-primary); }
+.hljs-meta { color: var(--dsw-alias-state-error-primary); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
